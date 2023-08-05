@@ -4,15 +4,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "format": "prettier --write \"resources/css/**/*.css\" \"resources/views/**/*.blade.php\" \"*.js\" \"*.json\" \"*.xml\" \"*.md\"",
-    "lint": "eslint \"{resources}/**/*.ts\" --fix"
+    "format": "prettier --write \"resources/css/**/*.css\" \"resources/views/**/*.blade.php\" \"*.js\" \"*.json\" \"*.xml\" \"*.md\" && ./vendor/bin/pint --preset psr12",
+    "lint": "eslint \"resources/**/*.ts\" --fix && tsc --noEmit && ./vendor/bin/phpstan analyse"
   },
   "devDependencies": {
     "@prettier/plugin-xml": "^3.1.1",
     "@shufo/prettier-plugin-blade": "^1.10.1",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/alpinejs": "^3.7.2",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
+    "alpinejs": "^3.12.3",
     "autoprefixer": "^10.4.14",
     "axios": "^1.1.2",
     "cz-conventional-changelog": "^3.3.0",
