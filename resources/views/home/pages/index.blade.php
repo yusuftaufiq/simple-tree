@@ -199,13 +199,13 @@
                         <option selected>Choose here</option>
 
                         <template
-                            x-for="(person, index) in persons"
+                            x-for="(person, index) in persons.filter((person) => person.id !== selectedPerson?.id)"
                             :key="person.id"
                         >
                             <option
                                 x-text="person.name"
                                 x-bind:value="person.id"
-                                x-bind:selected="person.id === selectedPerson?.parent_id"
+                                x-bind:selected="person.id === selectedPerson?.parentId"
                             ></option>
                         </template>
                     </select>
@@ -225,13 +225,14 @@
                     <label class="label">
                         <span class="label-text">Gender</span>
                     </label>
-                        <select class="select select-bordered select-sm w-full">
+                    <select class="select select-bordered select-sm w-full">
                         <option
                             disabled
                             selected
                         >Choose here</option>
                         @foreach ($genders as $gender)
-                            <option x-bind:selected="'{{ $gender }}' === selectedPerson?.gender">{{ $gender }}</option>
+                            <option x-bind:selected="'{{ $gender }}' === selectedPerson?.gender">{{ $gender }}
+                            </option>
                         @endforeach
                     </select>
                 </div>

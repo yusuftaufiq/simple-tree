@@ -17,7 +17,7 @@
 
 <body class="preview antialiased">
     <div class="hero min-h-screen">
-        <div class="hero-content text-center min-w-[50vw]">
+        <div class="hero-content min-w-[50vw] text-center">
             @yield('content')
         </div>
     </div>

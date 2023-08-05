@@ -5,7 +5,11 @@ namespace App\Data;
 use App\Enums\Gender;
 use Illuminate\Contracts\Support\Arrayable;
 
-final class PersonData implements Arrayable {
+/**
+ * @implements Arrayable<string, mixed>
+ */
+final class PersonData implements Arrayable
+{
     public function __construct(
         public int $id,
         public int | null $parentId,
@@ -14,7 +18,7 @@ final class PersonData implements Arrayable {
     ) {
     }
 
-    function toArray(): array
+    public function toArray(): array
     {
         return [
             'id' => $this->id,
