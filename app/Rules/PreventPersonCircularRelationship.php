@@ -2,17 +2,18 @@
 
 namespace App\Rules;
 
-use App\Models\Person;
+use App\Services\PersonService;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class PreventPersonCircularRelationship implements ValidationRule
 {
-    private readonly Person $person;
+    private readonly PersonService $personService;
 
-    public function __construct(int $personId)
-    {
-        $this->person = Person::findOrFail($personId);
+    public function __construct(
+        private readonly int $personId
+    ) {
+        $this->personService = app(PersonService::class);
     }
 
     /**
@@ -28,8 +29,8 @@ class PreventPersonCircularRelationship implements ValidationRule
             return;
         }
 
-        if ($this->person->isIdAlreadyUsedByDescendants((int) $value) === true) {
-            $fail("parent of {$this->person->name} cannot be one of its ascendants");
+        if ($this->personService->isIdAlreadyUsedByDescendants($this->personId, (int) $value) === true) {
+            $fail('parent cannot be one of its ascendants');
         }
     }
 }

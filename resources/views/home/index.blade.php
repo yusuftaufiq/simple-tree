@@ -215,7 +215,7 @@
                     x-on:submit="isLoading = true"
                 >
                     @csrf
-                    @method('PATCH')
+                    @method('PUT')
 
                     <div class="flex flex-col -space-y-1">
                         <label class="label">

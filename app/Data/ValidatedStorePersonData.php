@@ -6,9 +6,9 @@ use App\Enums\Gender;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * @phpstan-type UnsavedPersonShape array{ parent_id: int | null, name: string, gender: value-of<Gender> }
+ * @phpstan-type ValidatedStorePersonDataShape array{ parent_id: int | null, name: string, gender: value-of<Gender> }
  *
- * @implements Arrayable<key-of<UnsavedPersonShape>, value-of<UnsavedPersonShape>>
+ * @implements Arrayable<key-of<ValidatedStorePersonDataShape>, value-of<ValidatedStorePersonDataShape>>
  */
 class ValidatedStorePersonData implements Arrayable
 {
@@ -20,7 +20,7 @@ class ValidatedStorePersonData implements Arrayable
     }
 
     /**
-     * @return UnsavedPersonShape|array<model-property<\App\Models\Person>, mixed>
+     * @return ValidatedStorePersonDataShape|array<model-property<\App\Models\Person>, mixed>
      */
     public function toArray(): array
     {

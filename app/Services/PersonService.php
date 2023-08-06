@@ -25,7 +25,11 @@ class PersonService
 
     public function findOrFail(int $id): PersonData
     {
-        $person = Person::findOrFail($id);
+        $person = Person::find($id);
+
+        if ($person === null) {
+            abort(Response::HTTP_NOT_FOUND, "person with id {$id} not found");
+        }
 
         return new PersonData(
             id: $person->id,
@@ -49,18 +53,9 @@ class PersonService
 
     public function updateOrFail(ValidatedUpdatePersonData $validatedUpdatePersonData, int $id): PersonData
     {
-        $count = (int) Person::where(['id' => $id])->update($validatedUpdatePersonData->toArray());
+        Person::where(['id' => $id])->update($validatedUpdatePersonData->toArray());
 
-        if ($count === 0) {
-            abort(Response::HTTP_NOT_FOUND);
-        }
-
-        return new PersonData(
-            id: $id,
-            parentId: $validatedUpdatePersonData->parentId,
-            name: $validatedUpdatePersonData->name,
-            gender: $validatedUpdatePersonData->gender,
-        );
+        return $this->findOrFail($id);
     }
 
     public function destroyOrFail(int $id): int
@@ -68,9 +63,20 @@ class PersonService
         $count = Person::destroy($id);
 
         if ($count === 0) {
-            abort(Response::HTTP_NOT_FOUND);
+            abort(Response::HTTP_NOT_FOUND, "person with id {$id} not found");
         }
 
         return $count;
+    }
+
+    public function isIdAlreadyUsedByDescendants(int $id, int $descendantsId): bool
+    {
+        $person = Person::find($id);
+
+        if ($person === null) {
+            abort(Response::HTTP_NOT_FOUND, "person with id {$id} not found");
+        }
+
+        return $person->isIdAlreadyUsedByDescendants($descendantsId);
     }
 }

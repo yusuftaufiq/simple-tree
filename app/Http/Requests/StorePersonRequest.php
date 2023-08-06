@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * @phpstan-import-type UnsavedPersonShape from \App\Data\ValidatedStorePersonData
+ * @phpstan-import-type ValidatedStorePersonDataShape from \App\Data\ValidatedStorePersonData
  * @phpstan-type StorePersonRequestShape array{ parent_id: array<mixed>, name: array<mixed>, gender: array<mixed> }
  */
 class StorePersonRequest extends FormRequest
@@ -42,13 +42,13 @@ class StorePersonRequest extends FormRequest
     /**
      * Convert the request into a data transfer object.
      */
-    public function toDto(): ValidatedStorePersonData
+    public function toStorePersonDto(): ValidatedStorePersonData
     {
-        /** @var UnsavedPersonShape $validated */
+        /** @var ValidatedStorePersonDataShape $validated */
         $validated = $this->safe()->toArray();
 
         return new ValidatedStorePersonData(
-            parentId: $validated['parent_id'],
+            parentId: $validated['parent_id'] ?? null,
             name: $validated['name'],
             gender: Gender::from($validated['gender']),
         );

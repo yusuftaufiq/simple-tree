@@ -19,7 +19,7 @@ final class PersonController extends Controller
      */
     public function store(StorePersonRequest $request): RedirectResponse
     {
-        $validatedPerson = $request->toDto();
+        $validatedPerson = $request->toStorePersonDto();
 
         $this->personService->create($validatedPerson);
 
@@ -31,7 +31,7 @@ final class PersonController extends Controller
      */
     public function update(UpdatePersonRequest $request, int $id): RedirectResponse
     {
-        $validatedPerson = $request->toDto();
+        $validatedPerson = $request->toUpdatePersonDto();
 
         $this->personService->updateOrFail($validatedPerson, $id);
 

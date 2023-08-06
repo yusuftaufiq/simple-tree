@@ -6,8 +6,8 @@ use App\Enums\Gender;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * @phpstan-import-type UnsavedPersonShape from ValidatedStorePersonData
- * @phpstan-type SavedPersonShape array{ id: int }&UnsavedPersonShape
+ * @phpstan-import-type ValidatedStorePersonDataShape from ValidatedStorePersonData
+ * @phpstan-type SavedPersonShape array{ id: int }&ValidatedStorePersonDataShape
  *
  * @implements Arrayable<key-of<SavedPersonShape>, value-of<SavedPersonShape>>
  */

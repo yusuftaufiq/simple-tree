@@ -8,7 +8,7 @@ use App\Rules\PreventPersonCircularRelationship;
 use Illuminate\Validation\Rule;
 
 /**
- * @phpstan-import-type UnsavedPersonShape from \App\Data\ValidatedStorePersonData
+ * @phpstan-import-type ValidatedUpdatePersonDataShape from \App\Data\ValidatedUpdatePersonData
  * @phpstan-import-type StorePersonRequestShape from StorePersonRequest
  */
 class UpdatePersonRequest extends StorePersonRequest
@@ -37,13 +37,13 @@ class UpdatePersonRequest extends StorePersonRequest
     /**
      * Convert the request into a data transfer object.
      */
-    public function toDto(): ValidatedUpdatePersonData
+    public function toUpdatePersonDto(): ValidatedUpdatePersonData
     {
-        /** @var UnsavedPersonShape $validated */
+        /** @var ValidatedUpdatePersonDataShape $validated */
         $validated = $this->safe()->toArray();
 
         return new ValidatedUpdatePersonData(
-            parentId: $validated['parent_id'],
+            parentId: $validated['parent_id'] ?? null,
             name: $validated['name'],
             gender: Gender::from($validated['gender']),
         );
