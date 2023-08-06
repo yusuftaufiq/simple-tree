@@ -12,7 +12,8 @@ Simple family tree web application with a single parent each.
 ## Installation
 
 - Requirements:
-  - `PHP >= 8.1`
+  - `PHP >= 8.1` with `composer` installed
+  - `Node.js >= 18` with `npm` installed
   - Relational Database, for example one from the following list:
     - `MySQL >= 8.0`
     - `MariaDB >= 10.2`
