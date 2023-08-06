@@ -6,7 +6,7 @@ export function buildTree(
   parentId: number | null = null,
 ): PersonTree[] {
   return data
-    .filter((item) => item.parentId === parentId)
+    .filter((item) => item.parent_id === parentId)
     .map((item) => ({
       ...item,
       children: buildTree(data, item.id),

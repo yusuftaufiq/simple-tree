@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\GenderService;
 use App\Services\PersonService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 final class HomeController extends Controller
 {
@@ -16,9 +18,9 @@ final class HomeController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+    public function __invoke(): View|Factory
     {
-        return view('home.pages.index', [
+        return view('home.index', [
             'genders' => $this->genderService->all(),
             'persons' => $this->personService->all(),
         ]);

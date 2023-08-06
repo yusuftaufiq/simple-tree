@@ -6,15 +6,13 @@ use App\Enums\Gender;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * @phpstan-import-type UnsavedPersonShape from ValidatedStorePersonData
- * @phpstan-type SavedPersonShape array{ id: int }&UnsavedPersonShape
+ * @phpstan-type UnsavedPersonShape array{ parent_id: int | null, name: string, gender: value-of<Gender> }
  *
- * @implements Arrayable<key-of<SavedPersonShape>, value-of<SavedPersonShape>>
+ * @implements Arrayable<key-of<UnsavedPersonShape>, value-of<UnsavedPersonShape>>
  */
-class PersonData implements Arrayable
+class ValidatedStorePersonData implements Arrayable
 {
     public function __construct(
-        public int $id,
         public int | null $parentId,
         public string $name,
         public Gender $gender,
@@ -22,12 +20,11 @@ class PersonData implements Arrayable
     }
 
     /**
-     * @return SavedPersonShape|array<model-property<\App\Models\Person>, mixed>
+     * @return UnsavedPersonShape|array<model-property<\App\Models\Person>, mixed>
      */
     public function toArray(): array
     {
         return [
-            'id' => $this->id,
             'parent_id' => $this->parentId,
             'name' => $this->name,
             'gender' => $this->gender->value,

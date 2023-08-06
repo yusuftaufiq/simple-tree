@@ -1,6 +1,6 @@
 export interface Person {
   id: number;
-  parentId: number | null;
+  parent_id: number | null;
   name: string;
   gender: 'MALE' | 'FEMALE';
 }

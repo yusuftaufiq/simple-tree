@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "format": "prettier --write \"resources/css/**/*.css\" \"resources/views/**/*.blade.php\" \"*.js\" \"*.json\" \"*.xml\" \"*.md\" && ./vendor/bin/pint --preset psr12",
-    "lint": "eslint \"resources/**/*.ts\" --fix && tsc --noEmit && ./vendor/bin/phpstan analyse"
+    "format": "prettier --write \"resources/css/**/*.css\" \"resources/views/**/*.blade.php\" \"*.js\" \"*.json\" \"*.xml\" \"*.md\" && ./vendor/bin/pint",
+    "lint": "eslint \"resources/**/*.ts\" --fix && tsc --noEmit && ./vendor/bin/phpstan analyse --memory-limit=512M"
   },
   "devDependencies": {
     "@prettier/plugin-xml": "^3.1.1",

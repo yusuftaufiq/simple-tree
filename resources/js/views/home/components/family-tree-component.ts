@@ -26,6 +26,8 @@ export default (): AlpineComponent<Component> => ({
 
   filterFamilyTreeByParent: null,
 
+  isLoading: false,
+
   get filteredPersons() {
     return this.persons.filter(({ name, gender }) => {
       const keyword = this.searchPersonKeyword.toLowerCase();

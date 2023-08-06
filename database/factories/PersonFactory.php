@@ -39,7 +39,7 @@ class PersonFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+    * @return array{ name: string, gender: Gender }
      */
     public function definition(): array
     {

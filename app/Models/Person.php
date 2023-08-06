@@ -52,9 +52,9 @@ class Person extends Model
      */
     public function isIdAlreadyUsedByDescendants(int $id): bool
     {
-        return $this
-            ->with('descendants')
-            ->get()
-            ->some(fn (Person $person) => $person->id === $id);
+        /** @var \Illuminate\Database\Eloquent\Collection<int, Person> $descendants */
+        $descendants = $this->descendants()->get();
+
+        return $descendants->some(fn (Person $person) => $person->id === $id);
     }
 }

@@ -20,7 +20,7 @@ class BasePersonSeeder extends Seeder
         $dede = Person::create(['name' => 'Dede', 'gender' => Gender::Male, 'parent_id' => $budi->id]);
         $dewi = Person::create(['name' => 'Dewi', 'gender' => Gender::Female, 'parent_id' => $budi->id]);
 
-        $feri = Person::create(['name' => 'Dedi', 'gender' => Gender::Male, 'parent_id' => $dedi->id]);
+        $feri = Person::create(['name' => 'Feri', 'gender' => Gender::Male, 'parent_id' => $dedi->id]);
         $farah = Person::create(['name' => 'Farah', 'gender' => Gender::Female, 'parent_id' => $dedi->id]);
 
         $feri = Person::create(['name' => 'Gugus', 'gender' => Gender::Male, 'parent_id' => $dodi->id]);
